@@ -1003,6 +1003,9 @@ Function WriteProgramFiles
     
 WriteLoop:
 
+    Push "scandll$0"
+    Call KmdUtilX
+    
     ;
     ; Write files
     ;
@@ -1522,6 +1525,9 @@ Driver_Silent:
 Driver_Upgrade:
 
     WriteRegDWORD HKLM "SYSTEM\CurrentControlSet\Services\${SBIEDRV}" "Start" 3
+    
+    Push "stop ${SBIESVC}"
+    Call KmdUtil
     
     Push "stop ${SBIEDRV}"
     Call KmdUtil
